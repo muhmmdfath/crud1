@@ -16,7 +16,7 @@ class UserModel extends Model
     protected $createdField = 'created_at';
     protected $updatedField = 'updated_at';
 
-    // Validasi data pengguna (jika dibutuhkan)
+    // Validasi data pengguna (opsional)
     protected $validationRules = [
         'email' => 'required|valid_email|is_unique[users.email]',
         'username' => 'required|is_unique[users.username]',

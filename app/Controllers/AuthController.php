@@ -37,13 +37,18 @@ class AuthController extends Controller
         // Cek apakah user ada dan password cocok
         if ($user && password_verify($password, $user['password'])) {
             // Set session jika login berhasil
-            session()->set('user_id', $user['id']);
-            session()->set('username', $user['username']);
-            return redirect()->to('/dashboard');
+            $sessionData = [
+                'user_id' => $user['id'],
+                'username' => $user['username'],
+                'isLoggedIn' => true
+            ];
+            session()->set($sessionData);
+            return redirect()->to('/karyawan');
         } else {
             return redirect()->to('/login')->with('error', 'Email atau password salah.');
         }
     }
+
 
     // Proses registrasi
     public function registerSubmit()
@@ -51,13 +56,14 @@ class AuthController extends Controller
         $validation = \Config\Services::validation();
 
         // Validasi input
-        if (
-            !$this->validate([
-                'signup-email' => 'required|valid_email|is_unique[users.email]',
-                'signup-password' => 'required|min_length[8]',
-                'signup-password-confirm' => 'matches[signup-password]',
-            ])
-        ) {
+        $validationRules = [
+            'signup-email' => 'required|valid_email|is_unique[users.email]',
+            'signup-username' => 'required|is_unique[users.username]',
+            'signup-password' => 'required|min_length[8]',
+            'signup-password-confirm' => 'matches[signup-password]',
+        ];
+
+        if (!$this->validate($validationRules)) {
             return redirect()->to('/login')->withInput()->with('errors', $validation->getErrors());
         }
 
@@ -68,10 +74,12 @@ class AuthController extends Controller
             'password' => password_hash($this->request->getPost('signup-password'), PASSWORD_BCRYPT),
         ];
 
-        // Insert data pengguna ke database
-        $userModel->save($data);
-
-        return redirect()->to('/login')->with('success', 'Registrasi berhasil, silakan login.');
+        try {
+            $userModel->insert($data); // Gunakan insert() agar memicu pengecekan validasi di model
+            return redirect()->to('/login')->with('success', 'Registrasi berhasil, silakan login.');
+        } catch (\Exception $e) {
+            return redirect()->to('/login')->with('error', 'Registrasi gagal, silakan coba lagi.');
+        }
     }
 
     // Logout
