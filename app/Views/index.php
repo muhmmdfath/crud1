@@ -36,7 +36,7 @@
   </header>
 
   <div class="container">
-    <h1 class="text-center mt-5" style="margin-top:100px !important;">CRUD karyawan</h1>
+    <h1 class="text-center mt-5" style="margin-top:120px !important;">CRUD karyawan</h1>
     <a href="/karyawan/tambah" class="btn btn-primary">
       Tambah Karyawan
     </a>
@@ -52,21 +52,21 @@
       </thead>
       <tbody>
         <?php foreach ($karyawan as $key => $karyawan): ?>
-        <tr>
-          <th scope="row"><?= $key + 1; ?></th>
-          <td><?= esc($karyawan['nama_depan']); ?></td>
-          <td><?= esc($karyawan['nama_belakang']); ?></td>
-          <td><?= esc($karyawan['departemen']); ?></td>
-          <td>
-            <a href="/karyawan/edit/<?= $karyawan['id']; ?>" class="btn btn-warning btn-sm">
-              <ion-icon name="pencil"></ion-icon>
-            </a>
-            <a href="/karyawan/delete/<?= $karyawan['id']; ?>" class="btn btn-danger btn-sm"
-              onclick="return confirm('Apakah Anda yakin ingin menghapus karyawan ini?')">
-              <ion-icon name="trash-outline"></ion-icon>
-            </a>
-          </td>
-        </tr>
+          <tr>
+            <th scope="row"><?= $key + 1; ?></th>
+            <td><?= esc($karyawan['nama_depan']); ?></td>
+            <td><?= esc($karyawan['nama_belakang']); ?></td>
+            <td><?= esc($karyawan['departemen']); ?></td>
+            <td>
+              <a href="/karyawan/edit/<?= $karyawan['id']; ?>" class="btn btn-warning btn-sm">
+                <ion-icon name="pencil"></ion-icon>
+              </a>
+              <a href="/karyawan/delete/<?= $karyawan['id']; ?>" class="btn btn-danger btn-sm"
+                onclick="return confirm('Apakah Anda yakin ingin menghapus karyawan ini?')">
+                <ion-icon name="trash-outline"></ion-icon>
+              </a>
+            </td>
+          </tr>
         <?php endforeach; ?>
       </tbody>
     </table>
@@ -74,10 +74,10 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
     integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
-  </script>
+    </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
     integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous">
-  </script>
+    </script>
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 </body>
 

@@ -12,7 +12,8 @@
   right: 10px; /* Jarak dari kanan */
   width: auto; /* Lebar menyesuaikan */
   z-index: 999; /* Pastikan berada di atas elemen lain */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Menambahkan bayangan untuk efek */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Menambahkan bayangan untuk efek */
+  margin-top: 20px;
 }
 
 /* Brand logo */
