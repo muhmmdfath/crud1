@@ -1,0 +1,51 @@
+/* Navbar utama */
+.navbar {
+  background-color: #fafafa; /* Latar belakang navbar */
+  border-radius: 70px; /* Membuat sudut membulat */
+  padding: 10px 20px; /* Spasi dalam navbar */
+  margin: 10px 0; /* Margin hanya atas dan bawah */
+  font-family: 'Poppins', sans-serif; /* Font Poppins */
+  font-size: 16px; /* Ukuran font */
+  position: fixed; /* Membuat navbar tetap berada di posisi atas */
+  top: 0; /* Tetap berada di bagian atas */
+  left: 10px; /* Jarak dari kiri */
+  right: 10px; /* Jarak dari kanan */
+  width: auto; /* Lebar menyesuaikan */
+  z-index: 999; /* Pastikan berada di atas elemen lain */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Menambahkan bayangan untuk efek */
+}
+
+/* Brand logo */
+.navbar-brand img {
+  width: 120px; /* Ukuran logo */
+  height: 51,32px;
+}
+
+/* Menu tengah */
+.navbar-nav.mx-auto {
+  display: flex;
+  justify-content: center; /* Menempatkan menu di tengah */
+  gap: 20px; /* Jarak antar link */
+}
+
+/* Link menu */
+.navbar-nav .nav-link {
+  color: #000; /* Warna teks */
+  margin: 0 10px; /* Spasi antar link */
+  border-radius: 8px; /* Membuat sudut membulat */
+  padding: 8px 12px; /* Spasi dalam link */
+  transition: background-color 0.3s, color 0.3s; /* Animasi hover */
+}
+
+/* Hover efek pada menu */
+.navbar-nav .nav-link:hover {
+  background-color: #f1f1f1; /* Warna latar hover */
+  color: #000; /* Warna teks hover */
+}
+
+/* Dropdown menu */
+.navbar-nav .dropdown-menu {
+  border-radius: 12px; /* Membulatkan sudut dropdown */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Bayangan dropdown */
+}
+

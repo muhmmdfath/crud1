@@ -6,7 +6,7 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 
-$routes->group('karyawan', ['filter' => 'auth'], function($routes) {
+$routes->group('karyawan', ['filter' => 'auth'], function ($routes) {
     $routes->get('/', 'Home::index');
     $routes->get('tambah', 'Home::tambah');
     $routes->post('simpan', 'Home::simpan');
@@ -17,7 +17,7 @@ $routes->group('karyawan', ['filter' => 'auth'], function($routes) {
 
 $routes->get('/', 'Home::home');
 
-$routes->group('auth', function($routes) {
+$routes->group('auth', function ($routes) {
     $routes->get('login', 'AuthController::login');
     $routes->post('loginSubmit', 'AuthController::loginSubmit');
     $routes->post('registerSubmit', 'AuthController::registerSubmit');

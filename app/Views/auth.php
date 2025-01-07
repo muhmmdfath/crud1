@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Tambah Karyawan</title>
+  <title>Masuk</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link rel="stylesheet" href="<?= base_url('style.css'); ?>">
@@ -12,27 +12,26 @@
 
 <body>
   <section class="forms-section position-absolute top-50 start-50 translate-middle">
+    <!-- Alert untuk notifikasi -->
+    <?php if (session()->getFlashdata('error')): ?>
+      <div class="alert alert-danger" role="alert">
+        <?= session()->getFlashdata('error') ?>
+      </div>
+    <?php endif; ?>
+
+    <?php if (session()->getFlashdata('success')): ?>
+      <div class="alert alert-success" role="alert">
+        <?= session()->getFlashdata('success') ?>
+      </div>
+    <?php endif; ?>
     <div class="forms">
-      <!-- Alert untuk notifikasi -->
-      <?php if (session()->getFlashdata('error')) : ?>
-        <div class="alert alert-danger">
-          <?= session()->getFlashdata('error') ?>
-        </div>
-      <?php endif; ?>
-      
-      <?php if (session()->getFlashdata('success')) : ?>
-        <div class="alert alert-success">
-          <?= session()->getFlashdata('success') ?>
-        </div>
-      <?php endif; ?>
-      
       <!-- Login Form -->
       <div class="form-wrapper is-active">
         <button type="button" class="switcher switcher-login">
           Login
           <span class="underline"></span>
         </button>
-        <form class="form form-login" action="auth/loginSubmit" method="POST">
+        <form class="form form-login" action="/auth/loginSubmit" method="POST">
           <fieldset>
             <legend>Please, enter your email and password for login.</legend>
             <div class="input-block">

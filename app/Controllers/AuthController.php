@@ -25,7 +25,7 @@ class AuthController extends Controller
                 'login-password' => 'required',
             ])
         ) {
-            return redirect()->to('/login')->withInput()->with('errors', $validation->getErrors());
+            return redirect()->to('/auth/login')->withInput()->with('errors', $validation->getErrors());
         }
 
         $email = $this->request->getPost('login-email');
@@ -45,7 +45,7 @@ class AuthController extends Controller
             session()->set($sessionData);
             return redirect()->to('/karyawan');
         } else {
-            return redirect()->to('/login')->with('error', 'Email atau password salah.');
+            return redirect()->to('/auth/login')->with('error', 'Email atau password salah.');
         }
     }
 
@@ -64,7 +64,7 @@ class AuthController extends Controller
         ];
 
         if (!$this->validate($validationRules)) {
-            return redirect()->to('/login')->withInput()->with('errors', $validation->getErrors());
+            return redirect()->to('/auth/login')->withInput()->with('errors', $validation->getErrors());
         }
 
         $userModel = new UserModel();
@@ -75,10 +75,10 @@ class AuthController extends Controller
         ];
 
         try {
-            $userModel->insert($data); // Gunakan insert() agar memicu pengecekan validasi di model
-            return redirect()->to('/login')->with('success', 'Registrasi berhasil, silakan login.');
+            $userModel->insert($data);
+            return redirect()->to('/auth/login')->with('success', 'Registrasi berhasil, silakan login.');
         } catch (\Exception $e) {
-            return redirect()->to('/login')->with('error', 'Registrasi gagal, silakan coba lagi.');
+            return redirect()->to('/auth/login')->with('error', 'Registrasi gagal, silakan coba lagi.');
         }
     }
 
@@ -86,6 +86,6 @@ class AuthController extends Controller
     public function logout()
     {
         session()->destroy();
-        return redirect()->to('/login');
+        return redirect()->to('/auth/login');
     }
 }

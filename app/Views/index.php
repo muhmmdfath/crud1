@@ -7,11 +7,36 @@
   <title>crud</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="<?= base_url('style2.css'); ?>">
 </head>
 
 <body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container">
+        <a class="navbar-brand" href="/auth/logout">
+          <button type="button" class="btn btn-outline-info"
+            style="font-weight:bold; font-family: 'Poppins', sans-serif;">
+            <ion-icon name="arrow-undo-circle-outline"></ion-icon> Logout
+          </button>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <!-- Menu Tengah dengan Container -->
+          <div class="menu-container mx-auto">
+
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
   <div class="container">
-    <h1 class="text-center mt-5">CRUD karyawan</h1>
+    <h1 class="text-center mt-5" style="margin-top:100px !important;">CRUD karyawan</h1>
     <a href="/karyawan/tambah" class="btn btn-primary">
       Tambah Karyawan
     </a>
