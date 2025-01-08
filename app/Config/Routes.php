@@ -16,6 +16,8 @@ $routes->group('karyawan', ['filter' => 'auth'], function ($routes) {
 });
 
 $routes->get('/', 'Home::home');
+$routes->get('/testdb', 'TestDB::index');
+
 
 $routes->group('auth', function ($routes) {
     $routes->get('login', 'AuthController::login');
@@ -23,3 +25,5 @@ $routes->group('auth', function ($routes) {
     $routes->post('registerSubmit', 'AuthController::registerSubmit');
     $routes->get('logout', 'AuthController::logout');
 });
+
+$routes->get('/oitm/search', 'PartController::searchOITM');
