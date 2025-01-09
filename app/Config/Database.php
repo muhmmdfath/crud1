@@ -127,6 +127,37 @@ class Database extends Config
         ],
     ];
 
+    // public $default = [
+    //     'DSN'      => '',
+    //     'hostname' => '192.168.10.250',
+    //     'username' => 'programmer',
+    //     'password' => 'N1h0n531ki.',
+    //     'database' => 'SBO_NSI_USD_LIVE',
+    //     'DBDriver' => 'SQLSRV',
+    //     'DBPrefix' => '',
+    //     'pConnect' => false,
+    //     'DBDebug'  => true,
+    //     'charset'  => 'utf8',
+    //     'DBCollat' => 'utf8_general_ci',
+    //     'port'     => 1433,
+    // ];
+
+    public $local = [
+        'DSN' => '',
+        'hostname' => 'localhost',
+        'username' => 'root',
+        'password' => 'admin',
+        'database' => 'crud-simple',
+        'DBDriver' => 'MySQLi',
+        'DBPrefix' => '',
+        'pConnect' => false,
+        'DBDebug' => true,
+        'charset' => 'utf8',
+        'DBCollat' => 'utf8_general_ci',
+        'port' => 3308,
+    ];
+
+
     //    /**
     //     * Sample database connection for OCI8.
     //     *

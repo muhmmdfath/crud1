@@ -6,6 +6,7 @@ use CodeIgniter\Model;
 
 class UserModel extends Model
 {
+    protected $DBGroup = 'local';
     protected $table = 'users';
     protected $primaryKey = 'id';
 

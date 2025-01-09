@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 use App\Models\Karyawan;
+use App\Models\LocalPartModel;
 
 class Home extends BaseController
 {
@@ -12,13 +13,12 @@ class Home extends BaseController
 
     public function index()
     {
-        // Instansiasi model
         $model = new Karyawan();
+        $modelpart = new LocalPartModel();
 
-        // Ambil data karyawan dari database
         $data['karyawan'] = $model->findAll();
+        $data['part'] = $modelpart->findAll();
 
-        // Kirim data ke view
         return view('index', $data);
     }
 

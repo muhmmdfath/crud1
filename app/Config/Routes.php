@@ -26,4 +26,7 @@ $routes->group('auth', function ($routes) {
     $routes->get('logout', 'AuthController::logout');
 });
 
-$routes->get('/oitm/search', 'PartController::searchOITM');
+// $routes->get('/oitm/search', 'PartController::searchOITM');
+$routes->get('/part/search', 'PartController::search');
+$routes->post('/part/save', 'PartController::save');
+$routes->get('/part/delete/(:num)', 'PartController::delete/$1');
