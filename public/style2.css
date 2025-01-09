@@ -27,3 +27,22 @@
   background-color: #f8f9fa; /* Warna latar belakang navbar */
   padding: 10px 20px; /* Spasi dalam */
 }
+
+  #part-result {
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  #part-result .dropdown-item {
+    padding: 0.5rem;
+    cursor: pointer;
+  }
+
+  #part-result .dropdown-item:hover {
+    background-color: #f8f9fa;
+  }
+

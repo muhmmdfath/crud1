@@ -51,21 +51,21 @@
       </thead>
       <tbody>
         <?php foreach ($karyawan as $key => $karyawan): ?>
-          <tr>
-            <th scope="row"><?= $key + 1; ?></th>
-            <td><?= esc($karyawan['nama_depan']); ?></td>
-            <td><?= esc($karyawan['nama_belakang']); ?></td>
-            <td><?= esc($karyawan['departemen']); ?></td>
-            <td>
-              <a href="/karyawan/edit/<?= $karyawan['id']; ?>" class="btn btn-warning btn-sm">
-                <ion-icon name="pencil"></ion-icon>
-              </a>
-              <a href="/karyawan/delete/<?= $karyawan['id']; ?>" class="btn btn-danger btn-sm"
-                onclick="return confirm('Apakah Anda yakin ingin menghapus karyawan ini?')">
-                <ion-icon name="trash-outline"></ion-icon>
-              </a>
-            </td>
-          </tr>
+        <tr>
+          <th scope="row"><?= $key + 1; ?></th>
+          <td><?= esc($karyawan['nama_depan']); ?></td>
+          <td><?= esc($karyawan['nama_belakang']); ?></td>
+          <td><?= esc($karyawan['departemen']); ?></td>
+          <td>
+            <a href="/karyawan/edit/<?= $karyawan['id']; ?>" class="btn btn-warning btn-sm">
+              <ion-icon name="pencil"></ion-icon>
+            </a>
+            <a href="/karyawan/delete/<?= $karyawan['id']; ?>" class="btn btn-danger btn-sm"
+              onclick="return confirm('Apakah Anda yakin ingin menghapus karyawan ini?')">
+              <ion-icon name="trash-outline"></ion-icon>
+            </a>
+          </td>
+        </tr>
         <?php endforeach; ?>
       </tbody>
     </table>
@@ -85,18 +85,21 @@
 
           <form action="/part/save" method="post">
             <div class="modal-body">
-              <div class="mb-3">
+              <!-- <div class="mb-3">
                 <input type="text" class="form-control" id="part-search" placeholder="Cari Part...">
-              </div>
-              <div id="part-result"></div>
-              <div class="mb-3">
+              </div> -->
+              <div class="mb-3 position-relative">
                 <label for="part-code" class="col-form-label">Part Code</label>
                 <input type="text" class="form-control" id="part-code" name="part_code">
+                <div id="part-result" class="dropdown-menu"
+                  style="display:none; position:absolute; width:100%; z-index:1050;"></div>
               </div>
+
               <div class="mb-3">
                 <label for="part-name" class="col-form-label">Part Name</label>
                 <input type="text" class="form-control" id="part-name" name="part_name">
               </div>
+
             </div>
             <div class="modal-footer">
               <button type="submit" class="btn btn-primary">Input Part</button>
@@ -104,33 +107,42 @@
           </form>
 
           <script>
-            document.getElementById('part-search').addEventListener('input', function () {
+          document.querySelectorAll('#part-code, #part-name').forEach(input => {
+            input.addEventListener('input', function() {
               let keyword = this.value;
+              let field = this.id === 'part-code' ? 'code' : 'name'; // Menentukan field pencarian
+              let resultDiv = document.getElementById('part-result');
+
               if (keyword.length > 1) {
-                fetch('/part/search?keyword=' + keyword)
+                fetch(`/part/search?field=${field}&keyword=${keyword}`)
                   .then(response => response.json())
                   .then(data => {
-                    let resultHTML = '<ul class="list-group">';
+                    let resultHTML = '';
                     data.forEach(item => {
                       resultHTML += `
-                      <li class="list-group-item" onclick="selectPart('${item.ItemCode}', '${item.ItemName}')">
-                          ${item.ItemCode} - ${item.ItemName}
-                      </li>`;
+              <div class="dropdown-item" onclick="selectPart('${item.ItemCode}', '${item.ItemName}')">
+                ${item.ItemCode} - ${item.ItemName}
+              </div>`;
                     });
-                    resultHTML += '</ul>';
-                    document.getElementById('part-result').innerHTML = resultHTML;
+                    resultDiv.innerHTML = resultHTML;
+                    resultDiv.style.display = 'block'; // Tampilkan hasil
                   });
               } else {
-                document.getElementById('part-result').innerHTML = '';
+                resultDiv.innerHTML = '';
+                resultDiv.style.display = 'none'; // Sembunyikan dropdown jika input kosong
               }
             });
+          });
 
-            function selectPart(code, name) {
-              document.getElementById('part-code').value = code;
-              document.getElementById('part-name').value = name;
-              document.getElementById('part-result').innerHTML = '';
-            }
+          // Fungsi untuk memilih opsi
+          function selectPart(code, name) {
+            document.getElementById('part-code').value = code;
+            document.getElementById('part-name').value = name;
+            document.getElementById('part-result').style.display = 'none'; // Sembunyikan dropdown setelah dipilih
+          }
           </script>
+
+
 
         </div>
       </div>
@@ -147,30 +159,30 @@
       </thead>
       <tbody>
         <?php foreach ($part as $pr => $part): ?>
-          <tr>
-            <th scope="row"><?= $pr + 1; ?></th>
-            <td><?= esc($part['part_code']); ?></td>
-            <td><?= esc($part['part_name']); ?></td>
-            <td>
-              <!-- <a href="/karyawan/edit/<?= $part['id']; ?>" class="btn btn-warning btn-sm">
+        <tr>
+          <th scope="row"><?= $pr + 1; ?></th>
+          <td><?= esc($part['part_code']); ?></td>
+          <td><?= esc($part['part_name']); ?></td>
+          <td>
+            <!-- <a href="/karyawan/edit/<?= $part['id']; ?>" class="btn btn-warning btn-sm">
                 <ion-icon name="pencil"></ion-icon>
               </a> -->
-              <a href="/part/delete/<?= $part['id']; ?>" class="btn btn-danger btn-sm"
-                onclick="return confirm('Apakah Anda yakin ingin menghapus part ini?')">
-                <ion-icon name="trash-outline"></ion-icon>
-              </a>
-            </td>
-          </tr>
+            <a href="/part/delete/<?= $part['id']; ?>" class="btn btn-danger btn-sm"
+              onclick="return confirm('Apakah Anda yakin ingin menghapus part ini?')">
+              <ion-icon name="trash-outline"></ion-icon>
+            </a>
+          </td>
+        </tr>
         <?php endforeach; ?>
       </tbody>
     </table>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
     integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
-    </script>
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
     integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous">
-    </script>
+  </script>
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 
   <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" rel="stylesheet">

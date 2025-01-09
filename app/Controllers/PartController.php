@@ -8,11 +8,17 @@ class PartController extends BaseController
 {
     public function search()
     {
+        $field = $this->request->getVar('field'); // 'code' atau 'name'
         $keyword = $this->request->getVar('keyword');
-        $oitmModel = new OITMModel();
-        $data = $oitmModel->searchItem($keyword);
 
-        return $this->response->setJSON($data);
+        $model = new OITMModel();
+        if ($field === 'code') {
+            $parts = $model->like('ItemCode', $keyword)->findAll(10);
+        } else {
+            $parts = $model->like('ItemName', $keyword)->findAll(10);
+        }
+
+        return $this->response->setJSON($parts);
     }
 
     public function save()
