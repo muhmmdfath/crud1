@@ -104,11 +104,11 @@ class Database extends Config
     //     *
     //     * @var array<string, mixed>
     //     */
-    public array $default = [
+    public array $sqlsvr = [
         'DSN' => '',
         'hostname' => '192.168.10.250',
-        'username' => 'programmer',
-        'password' => 'N1h0n531ki.',
+        'username' => 'sa',
+        'password' => 'P@ssw0rd',
         'database' => 'SBO_NSI_USD_LIVE',
         'schema' => 'dbo',
         'DBDriver' => 'SQLSRV',
@@ -142,7 +142,7 @@ class Database extends Config
     //     'port'     => 1433,
     // ];
 
-    public $local = [
+    public $default = [
         'DSN' => '',
         'hostname' => 'localhost',
         'username' => 'root',

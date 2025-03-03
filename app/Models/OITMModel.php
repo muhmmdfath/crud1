@@ -4,7 +4,7 @@ use CodeIgniter\Model;
 
 class OITMModel extends Model
 {
-    protected $DBGroup = 'default'; 
+    protected $DBGroup = 'sqlsvr';
     protected $table = 'OITM';
     protected $primaryKey = 'ItemCode';
     protected $allowedFields = ['ItemCode', 'ItemName'];
